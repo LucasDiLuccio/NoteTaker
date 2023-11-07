@@ -125,10 +125,16 @@
     // Criar um elemento <a> para fazer o download do arquivo
     var downloadLink = document.createElement('a');
     downloadLink.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData);
-    downloadLink.download = 'anotacoes.json';
+    downloadLink.download = 'WOR_NoteTaker.json';
 
     // Simular o clique no link de download
     downloadLink.click();
+
+    // Enviar o arquivo JSON por e-mail usando o Outlook
+    var emailSubject = "Anotações WOR - " + currentDate.toLocaleDateString('pt-BR', options);
+    var emailBody = "Olá,\n\nAqui estão as anotações do WOR de hoje:\n\n" + jsonData;
+    var emailLink = "mailto:?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(emailBody);
+    window.location.href = emailLink;
   }
   
   </script>
